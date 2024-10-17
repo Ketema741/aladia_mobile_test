@@ -43,13 +43,12 @@ jobs:
         run: flutter build apk --release
 
       # Build the app for iOS (only works on macOS)
-      # Uncomment this block if you are using macOS runners
-      #- name: Build iOS
-      #  run: flutter build ios --release --no-codesign
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
 
       # Store build artifacts (e.g., APKs)
-      # - name: Upload APK
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: app-release.apk
-      #     path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
