@@ -39,8 +39,8 @@ jobs:
         run: flutter test
 
       # Build the app for Android (APK)
-      # - name: Build APK
-      #   run: flutter build apk --release
+      - name: Build APK
+        run: flutter build apk --release
 
       # Build the app for iOS (only works on macOS)
       # Uncomment this block if you are using macOS runners
