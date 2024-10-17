@@ -62,11 +62,10 @@ class _MyAppState extends State<MyApp> {
             ),
           ],
           child: MaterialApp.router(
-            // locale: const Locale('am', ''), // Default language set to Amharic
             locale: _locale, // Set the locale here
             supportedLocales: const [
               Locale('en', ''), // English
-              Locale('am', ''), // Amharic
+              Locale('it', ''), // Italiano
             ],
             localizationsDelegates: const [
               S.delegate,

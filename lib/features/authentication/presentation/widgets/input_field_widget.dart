@@ -15,6 +15,7 @@ class FormContainerWidget extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? inputType;
+  final Widget? prefix;
 
   const FormContainerWidget({
     super.key,
@@ -28,7 +29,8 @@ class FormContainerWidget extends StatefulWidget {
     this.onSaved,
     this.validator,
     this.onFieldSubmitted,
-    this.inputType,
+    this.inputType, 
+    this.prefix,
   });
 
   @override
@@ -75,6 +77,7 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
             color: AppColors.primaryColor,
           ),
         ),
+        prefix: widget.prefix,
         filled: true,
         hintText: widget.hintText,
         hintStyle: inputHintStyle,

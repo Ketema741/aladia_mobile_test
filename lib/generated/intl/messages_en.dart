@@ -24,7 +24,6 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
-        "amharic": MessageLookupByLibrary.simpleMessage("Amharic"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Change Language"),
@@ -32,66 +31,42 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
-        "doctors": MessageLookupByLibrary.simpleMessage("Doctors"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'\'t have an account?"),
-        "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enterYourEmail":
             MessageLookupByLibrary.simpleMessage("Enter your email"),
-        "favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
-        "filterResult": MessageLookupByLibrary.simpleMessage("Filter Result"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "general": MessageLookupByLibrary.simpleMessage("General"),
         "getStarted": MessageLookupByLibrary.simpleMessage("Get Started"),
-        "hakimBot": MessageLookupByLibrary.simpleMessage("HakimBot"),
-        "hospitals": MessageLookupByLibrary.simpleMessage("Hospitals"),
+        "italiano": MessageLookupByLibrary.simpleMessage("Italiano"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
-        "listOfHospital":
-            MessageLookupByLibrary.simpleMessage("List of Hospitals"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
-        "noDoctorFound":
-            MessageLookupByLibrary.simpleMessage("No doctor found"),
-        "noHospitalFound":
-            MessageLookupByLibrary.simpleMessage("No hospital found"),
-        "noSearchHistory":
-            MessageLookupByLibrary.simpleMessage("No search history"),
         "oldPassword": MessageLookupByLibrary.simpleMessage("Old Password"),
-        "orLoginWith": MessageLookupByLibrary.simpleMessage("Or login with"),
+        "orLoginWith": MessageLookupByLibrary.simpleMessage("Or"),
         "orSignUpWith": MessageLookupByLibrary.simpleMessage("Or sign up with"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "preferences": MessageLookupByLibrary.simpleMessage("Preferences"),
-        "profileSettings":
-            MessageLookupByLibrary.simpleMessage("Profile Setting"),
-        "removeFilter": MessageLookupByLibrary.simpleMessage("Remove Filter"),
-        "searchDoctors": MessageLookupByLibrary.simpleMessage("Search Doctors"),
-        "searchHistory": MessageLookupByLibrary.simpleMessage("Search History"),
-        "searchHospitals":
-            MessageLookupByLibrary.simpleMessage("Search Hospitals"),
-        "searchResult": MessageLookupByLibrary.simpleMessage("Search Result"),
-        "seeAll": MessageLookupByLibrary.simpleMessage("See All"),
-        "services": MessageLookupByLibrary.simpleMessage("Services"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
-        "specialities": MessageLookupByLibrary.simpleMessage("Specialities"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome to HakimHub"),
-        "welcome2": MessageLookupByLibrary.simpleMessage("Standby Doctors"),
-        "welcome3": MessageLookupByLibrary.simpleMessage("Nearby Hospitals"),
-        "welcome4": MessageLookupByLibrary.simpleMessage("Meet HakimBot"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome to Aladia"),
+        "welcome2": MessageLookupByLibrary.simpleMessage("E-Learning"),
+        "welcome3": MessageLookupByLibrary.simpleMessage("E-Learning"),
+        "welcome4": MessageLookupByLibrary.simpleMessage("Welcome to Aladia"),
         "welcomeDescription": MessageLookupByLibrary.simpleMessage(
-            "Provide easily accessible information about healthcare facilities and healthcare professionals"),
+            "We have worked to digitize our school, ang give the whole world the opportunity to do it with a new study platform designed for teachers"),
         "welcomeDescription2": MessageLookupByLibrary.simpleMessage(
-            "Effortlessly connect with top doctors. Review, schedule, and explore your healthcare options."),
+            "Effortlessly connect with top teachers. Review, schedule, and explore your e-learning options."),
         "welcomeDescription3": MessageLookupByLibrary.simpleMessage(
-            "Discover, schedule, rate: nearby hospitals at your fingertips"),
-        "welcomeDescription4": MessageLookupByLibrary.simpleMessage(
-            "HakimBot: Your 24/7 health assistant for instant medical support")
+            "Discover, schedule, rate:  e-learning at your fingertips"),
+        "welcomeDescription4":
+            MessageLookupByLibrary.simpleMessage("Welcome to Aladia")
       };
 }

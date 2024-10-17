@@ -34,14 +34,6 @@ final GoRouter router = GoRouter(
         builder: (BuildContext context, GoRouterState state) {
           return const SignUpScreen();
         }),
-    GoRoute(
-      path: '/otp/:email',
-      name: RouteConstants.otpRouteName,
-      builder: (BuildContext context, GoRouterState state) {
-        final String email = state.pathParameters['email']!;
-        return OtpPage(email: email);
-      },
-    ),
 
     GoRoute(
         path: '/login',

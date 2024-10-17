@@ -2,17 +2,13 @@ import 'package:aladia_flutter_test/core/constants/app_text_styles.dart';
 import 'package:aladia_flutter_test/core/theme/app_colors.dart';
 import 'package:aladia_flutter_test/core/utils/email_validation.dart';
 import 'package:aladia_flutter_test/features/authentication/presentation/bloc/login_bloc.dart';
-import 'package:aladia_flutter_test/features/authentication/presentation/widgets/button_container_widget.dart';
-import 'package:aladia_flutter_test/features/authentication/presentation/widgets/input_field_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:aladia_flutter_test/generated/l10n.dart';
 
+import '../widgets/widgets.dart';
 
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
@@ -77,38 +73,47 @@ class _SigninScreenState extends State<SigninScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(height: 24.h),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/aladia_logo.png',
-                              height: 150,
-                              width: 150,
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 2.0,
                             ),
-                            const Flexible(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Welcome to Aladia,',
-                                    style: TextStyle(
-                                      fontSize: 20, 
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                  Text(
-                                    'Create or access your account from here',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                    ),
-                                    textAlign: TextAlign.start,
-                                    softWrap:true,
-                                    
-                                  ),
-                                ],
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/images/aladia_logo.png',
+                                height: 150,
+                                width: 150,
                               ),
-                            ),
-                          ],
+                              Flexible(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      S.of(context).welcome,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                    const Text(
+                                      'Create or access your account from here',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      softWrap: true,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         SizedBox(height: 40.h),
                         Text(
@@ -129,6 +134,14 @@ class _SigninScreenState extends State<SigninScreen> {
                                         _emailController.text.isNotEmpty;
                                   });
                                 },
+                                prefix: const Padding(
+                                  padding: EdgeInsets.only(right: 8.0),
+                                  child: Icon(
+                                    Icons.email,
+                                    color: Colors.white,
+                                    size: 1,
+                                  ),
+                                ),
                                 controller: _emailController,
                                 labelText: S.of(context).email,
                                 validator: (value) {
@@ -264,23 +277,55 @@ class _SigninScreenState extends State<SigninScreen> {
                             );
                           },
                         ),
-                        SizedBox(height: 15.h),
-                        Text(
-                          S.of(context).orLoginWith,
-                          style: textPrimaryStyle,
+                        SizedBox(height: 24.h),
+                  
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Divider(
+                                color: Colors.white,
+                                thickness: 1,
+                                endIndent: 10,
+                              ),
+                            ),
+                            Text(
+                              S.of(context).orLoginWith,
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Expanded(
+                              child: Divider(
+                                color: Colors.white,
+                                thickness: 1,
+                                indent: 10,
+                              ),
+                            ),
+                          ],
                         ),
-                        SizedBox(height: 10.h),
-                        SvgPicture.asset(
-                          'assets/images/circular_button_google.svg',
-                          width: 55.w,
-                          height: 55.h,
+                        SizedBox(height: 24.h),
+                        const SocialMediaBtn(
+                          text: "Google",
+                          iconPath: 'assets/icons/google.png',
+                        ),
+                        SizedBox(height: 24.h),
+                        const SocialMediaBtn(
+                          text: "Facebook",
+                          iconPath: 'assets/icons/facebook.png',
+                        ),
+                        SizedBox(height: 24.h),
+                        const SocialMediaBtn(
+                          text: "Apple",
+                          iconPath: 'assets/icons/apple.png',
                         ),
                         SizedBox(height: 24.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              S.of(context).dontHaveAccount,
+                              "Terms and conditions",
                               style: textPrimaryStyle,
                             ),
                             SizedBox(width: 2.w),

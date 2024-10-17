@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Welcome to HakimHub`
+  /// `Welcome to Aladia`
   String get welcome {
     return Intl.message(
-      'Welcome to HakimHub',
+      'Welcome to Aladia',
       name: 'welcome',
       desc: '',
       args: [],
@@ -100,70 +100,70 @@ class S {
     );
   }
 
-  /// `Provide easily accessible information about healthcare facilities and healthcare professionals`
+  /// `We have worked to digitize our school, ang give the whole world the opportunity to do it with a new study platform designed for teachers`
   String get welcomeDescription {
     return Intl.message(
-      'Provide easily accessible information about healthcare facilities and healthcare professionals',
+      'We have worked to digitize our school, ang give the whole world the opportunity to do it with a new study platform designed for teachers',
       name: 'welcomeDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Standby Doctors`
+  /// `E-Learning`
   String get welcome2 {
     return Intl.message(
-      'Standby Doctors',
+      'E-Learning',
       name: 'welcome2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Effortlessly connect with top doctors. Review, schedule, and explore your healthcare options.`
+  /// `Effortlessly connect with top teachers. Review, schedule, and explore your e-learning options.`
   String get welcomeDescription2 {
     return Intl.message(
-      'Effortlessly connect with top doctors. Review, schedule, and explore your healthcare options.',
+      'Effortlessly connect with top teachers. Review, schedule, and explore your e-learning options.',
       name: 'welcomeDescription2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Nearby Hospitals`
+  /// `E-Learning`
   String get welcome3 {
     return Intl.message(
-      'Nearby Hospitals',
+      'E-Learning',
       name: 'welcome3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Discover, schedule, rate: nearby hospitals at your fingertips`
+  /// `Discover, schedule, rate:  e-learning at your fingertips`
   String get welcomeDescription3 {
     return Intl.message(
-      'Discover, schedule, rate: nearby hospitals at your fingertips',
+      'Discover, schedule, rate:  e-learning at your fingertips',
       name: 'welcomeDescription3',
       desc: '',
       args: [],
     );
   }
 
-  /// `Meet HakimBot`
+  /// `Welcome to Aladia`
   String get welcome4 {
     return Intl.message(
-      'Meet HakimBot',
+      'Welcome to Aladia',
       name: 'welcome4',
       desc: '',
       args: [],
     );
   }
 
-  /// `HakimBot: Your 24/7 health assistant for instant medical support`
+  /// `Welcome to Aladia`
   String get welcomeDescription4 {
     return Intl.message(
-      'HakimBot: Your 24/7 health assistant for instant medical support',
+      'Welcome to Aladia',
       name: 'welcomeDescription4',
       desc: '',
       args: [],
@@ -210,10 +210,10 @@ class S {
     );
   }
 
-  /// `Or login with`
+  /// `Or`
   String get orLoginWith {
     return Intl.message(
-      'Or login with',
+      'Or',
       name: 'orLoginWith',
       desc: '',
       args: [],
@@ -295,196 +295,6 @@ class S {
     return Intl.message(
       'Already have an account?',
       name: 'alreadyHaveAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Doctors`
-  String get doctors {
-    return Intl.message(
-      'Doctors',
-      name: 'doctors',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Hospitals`
-  String get hospitals {
-    return Intl.message(
-      'Hospitals',
-      name: 'hospitals',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `HakimBot`
-  String get hakimBot {
-    return Intl.message(
-      'HakimBot',
-      name: 'hakimBot',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Favorites`
-  String get favorites {
-    return Intl.message(
-      'Favorites',
-      name: 'favorites',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search Doctors`
-  String get searchDoctors {
-    return Intl.message(
-      'Search Doctors',
-      name: 'searchDoctors',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `See All`
-  String get seeAll {
-    return Intl.message(
-      'See All',
-      name: 'seeAll',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Specialities`
-  String get specialities {
-    return Intl.message(
-      'Specialities',
-      name: 'specialities',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search Hospitals`
-  String get searchHospitals {
-    return Intl.message(
-      'Search Hospitals',
-      name: 'searchHospitals',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Services`
-  String get services {
-    return Intl.message(
-      'Services',
-      name: 'services',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Filter Result`
-  String get filterResult {
-    return Intl.message(
-      'Filter Result',
-      name: 'filterResult',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Remove Filter`
-  String get removeFilter {
-    return Intl.message(
-      'Remove Filter',
-      name: 'removeFilter',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `List of Hospitals`
-  String get listOfHospital {
-    return Intl.message(
-      'List of Hospitals',
-      name: 'listOfHospital',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No search history`
-  String get noSearchHistory {
-    return Intl.message(
-      'No search history',
-      name: 'noSearchHistory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No hospital found`
-  String get noHospitalFound {
-    return Intl.message(
-      'No hospital found',
-      name: 'noHospitalFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No doctor found`
-  String get noDoctorFound {
-    return Intl.message(
-      'No doctor found',
-      name: 'noDoctorFound',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search Result`
-  String get searchResult {
-    return Intl.message(
-      'Search Result',
-      name: 'searchResult',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Search History`
-  String get searchHistory {
-    return Intl.message(
-      'Search History',
-      name: 'searchHistory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Profile Setting`
-  String get profileSettings {
-    return Intl.message(
-      'Profile Setting',
-      name: 'profileSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Profile`
-  String get editProfile {
-    return Intl.message(
-      'Edit Profile',
-      name: 'editProfile',
       desc: '',
       args: [],
     );
@@ -580,11 +390,11 @@ class S {
     );
   }
 
-  /// `Amharic`
-  String get amharic {
+  /// `Italiano`
+  String get italiano {
     return Intl.message(
-      'Amharic',
-      name: 'amharic',
+      'Italiano',
+      name: 'italiano',
       desc: '',
       args: [],
     );
@@ -597,7 +407,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'am'),
+      Locale.fromSubtags(languageCode: 'it'),
     ];
   }
 
