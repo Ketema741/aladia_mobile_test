@@ -1,0 +1,48 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 'stable'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Run Flutter tests
+      - name: Run tests
+        run: flutter test
+
+      # Build the app for Android (APK)
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Build the app for iOS (only works on macOS)
+      # Uncomment this block if you are using macOS runners
+      #- name: Build iOS
+      #  run: flutter build ios --release --no-codesign
+
+      # Store build artifacts (e.g., APKs)
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
