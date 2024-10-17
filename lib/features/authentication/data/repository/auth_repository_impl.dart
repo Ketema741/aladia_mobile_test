@@ -1,7 +1,6 @@
 import 'package:aladia_flutter_test/core/error/failures.dart';
 import 'package:aladia_flutter_test/core/network/network_info.dart';
 import 'package:aladia_flutter_test/core/utils/shard_preference.dart';
-import 'package:aladia_flutter_test/core/utils/token_decoder.dart';
 import 'package:aladia_flutter_test/core/utils/typedef.dart';
 import 'package:dartz/dartz.dart';
 import '../../domain/repositories/repositories.dart';
@@ -21,10 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
     if (await networkInfo.isConnected) {
       try {
         final result = await remoteDataSource.signin(email, password);
-        Map<String, dynamic> userData = decodeToken(result);
-
         ShardPrefHelper.setToken(result);
-        ShardPrefHelper.setUserId(userData['id']);
 
         return Right(result);
       } on ServerFailure catch (e) {

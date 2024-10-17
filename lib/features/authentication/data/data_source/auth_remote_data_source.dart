@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:aladia_flutter_test/core/error/exception.dart';
 import 'package:aladia_flutter_test/core/utils/constants.dart';
-import 'package:aladia_flutter_test/core/utils/shard_preference.dart';
 import 'package:http/http.dart' as http;
 
 abstract class AuthRemoteDataSource {
@@ -17,18 +16,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required this.client});
   @override
   Future<String> signin(String email, String password) async {
+    final url = Uri.parse('$kBaseUrl/auth/login');
+
+     // Request body
+    final body = jsonEncode({
+      'email': email,
+      'password': password,
+    });
+
     final response = await client.post(
-      Uri.parse('$kBaseUrl/auth/login'),
-      body: {
-        'email': email,
-        'password': password,
-      },
+      url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: body,
     );
-    if (response.statusCode == 200) {
-      if(jsonDecode(response.body)['profileImage'] != null){
-        ShardPrefHelper.setProfileImage(jsonDecode(response.body)['profileImage']);
-      }
-      return jsonDecode(response.body)['accessToken'];
+    if (response.statusCode == 200 || jsonDecode(response.body)["accessToken"].toString().isNotEmpty) {
+      return jsonDecode(response.body)["accessToken"].toString();
     } else {
       throw ServerException(message: jsonDecode(response.body)['message']);
     }
@@ -38,7 +42,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> signup(String email, String password, String firstName,
       String lastName, String phoneNumber) async {
     final response = await client.post(
-      Uri.parse('$kBaseUrl/user/register'),
+      Uri.parse('$kBaseUrl/auth/register'),
       body: {
         'email': email,
         'password': password,
@@ -56,7 +60,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<String> verifyOtp({required String email, required String otp}) async {
     final response = await client.post(
-      Uri.parse('$kBaseUrl/user/verify-email'),
+      Uri.parse('$kBaseUrl/auth/verify-email'),
       body: jsonEncode({
         'email': email,
         'code': otp,
