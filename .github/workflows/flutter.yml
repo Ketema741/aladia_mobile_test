@@ -22,8 +22,14 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'
-
+          flutter-version: 3.24.3
+      - name: 'Checkout Flutter 3.24.3'
+        shell: bash
+        run: |
+          cd $FLUTTER_ROOT;
+          git fetch --tags;
+          git checkout 3.24.3;
+          flutter --version;
       # Install dependencies
       - name: Install dependencies
         run: flutter pub get
