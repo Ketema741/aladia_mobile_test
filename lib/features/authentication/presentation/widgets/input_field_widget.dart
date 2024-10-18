@@ -29,7 +29,7 @@ class FormContainerWidget extends StatefulWidget {
     this.onSaved,
     this.validator,
     this.onFieldSubmitted,
-    this.inputType, 
+    this.inputType,
     this.prefix,
   });
 
@@ -64,23 +64,28 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
       focusNode: _focusNode,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-        fillColor: AppColors.primaryColorLight,
+        fillColor: Theme.of(context).primaryColor.withOpacity(0.9),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.0),
         ),
         labelText: widget.labelText,
-        labelStyle: const TextStyle(color: AppColors.secondaryLightTextColor),
+        labelStyle: const TextStyle(color: Color.fromARGB(255, 103, 103, 104), fontSize: 18),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(
-            color: AppColors.primaryColor,
+            color: Colors.black,
           ),
         ),
         prefix: widget.prefix,
         filled: true,
         hintText: widget.hintText,
-        hintStyle: inputHintStyle,
+        hintStyle: const TextStyle(
+          color:  Color.fromARGB(255, 85, 84, 84),
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.50,
+        ),
         suffixIcon: GestureDetector(
           onTap: () {
             setState(() {
@@ -91,8 +96,9 @@ class _FormContainerWidgetState extends State<FormContainerWidget> {
               ? Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
                   color: _obscureText == false
-                      ? AppColors.secondaryTextColor
-                      : AppColors.secondaryLightTextColor,
+                      ? const Color.fromARGB(255, 85, 84, 84)
+                      : const Color.fromARGB(255, 85, 84, 84),
+                  size: 28,
                 )
               : const Text(""),
         ),

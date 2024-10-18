@@ -178,8 +178,8 @@ var inputSecondaryStyle = GoogleFonts.poppins(
 
 // Placeholder/Hint Text: Style for placeholder text in input fields
 var inputHintStyle = GoogleFonts.poppins(
-  color: AppColors.hintTextColor,
-  fontSize: 12.sp,
+  color:const Color.fromARGB(255, 85, 84, 84),
+  fontSize: 16.sp,
   fontWeight: FontWeight.w500,
   letterSpacing: 0.50,
 );

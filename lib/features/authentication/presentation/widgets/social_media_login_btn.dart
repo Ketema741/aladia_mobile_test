@@ -19,7 +19,7 @@ class SocialMediaBtn extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey,
+          color: Theme.of(context).primaryColor.withOpacity(0.3),
           width: 2.0,
         ),
         borderRadius: BorderRadius.circular(8.0),
@@ -50,8 +50,8 @@ class SocialMediaBtn extends StatelessWidget {
                     ? const CircularProgressIndicator()
                     : Text(
                         "$text",
-                        style: const TextStyle(
-                          color: AppColors.whiteColor,
+                        style:  TextStyle(
+                          color: Theme.of(context).primaryColor,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),

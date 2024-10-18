@@ -57,7 +57,7 @@ class _SigninScreenState extends State<SigninScreen> {
     ScreenUtil.init(context, designSize: const Size(430, 932));
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             return Stack(
@@ -76,13 +76,16 @@ class _SigninScreenState extends State<SigninScreen> {
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Colors.grey,
-                              width: 2.0,
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.5),
+                              width: 0.5,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          padding: const EdgeInsets.all(8.0),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Image.asset(
                                 'assets/images/aladia_logo.png',
@@ -90,26 +93,36 @@ class _SigninScreenState extends State<SigninScreen> {
                                 width: 150,
                               ),
                               Flexible(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      S.of(context).welcome,
-                                      style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "${S.of(context).welcome},",
+                                        style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.start,
                                       ),
-                                      textAlign: TextAlign.start,
-                                    ),
-                                    const Text(
-                                      'Create or access your account from here',
-                                      style: TextStyle(
-                                        fontSize: 16,
+                                      const SizedBox(
+                                        height: 5,
                                       ),
-                                      textAlign: TextAlign.start,
-                                      softWrap: true,
-                                    ),
-                                  ],
+                                      Text(
+                                        'Create or access your account from here',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Theme.of(context)
+                                                .primaryColor
+                                                .withOpacity(0.3)),
+                                        textAlign: TextAlign.start,
+                                        softWrap: true,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -119,7 +132,14 @@ class _SigninScreenState extends State<SigninScreen> {
                         Text(
                           // 'Enter your email',
                           S.of(context).enterYourEmail,
-                          style: heading2Style,
+                          style: TextStyle(
+                            color: Theme.of(context)
+                                .primaryColor
+                                .withOpacity(0.75),
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.15,
+                          ),
                         ),
                         SizedBox(height: 24.h),
                         Form(
@@ -127,41 +147,68 @@ class _SigninScreenState extends State<SigninScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              FormContainerWidget(
+                              TextFormField(
                                 onChanged: (value) {
                                   setState(() {
                                     isEmailFilled =
                                         _emailController.text.isNotEmpty;
                                   });
                                 },
-                                prefix: const Padding(
-                                  padding: EdgeInsets.only(right: 8.0),
-                                  child: Icon(
-                                    Icons.email,
-                                    color: Colors.white,
-                                    size: 1,
-                                  ),
-                                ),
                                 controller: _emailController,
-                                labelText: S.of(context).email,
+                                decoration: InputDecoration(
+                                  hintText: S.of(context).email,
+                                  hintStyle: const TextStyle(
+                                    color: Color.fromARGB(255, 85, 84, 84),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 85, 84, 84),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 85, 84, 84),
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: const BorderSide(
+                                      color: Colors.black,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  prefixIcon: const Icon(
+                                    Icons.email,
+                                    size: 28,
+                                    color: Color.fromARGB(255, 85, 84, 84),
+                                  ),
+                                  filled: true,
+                                  fillColor:
+                                      const Color.fromARGB(255, 157, 157, 157),
+                                ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Email is required';
-                                  } else if (validateEmail(value) == false) {
+                                  } else if (!validateEmail(value)) {
                                     return 'Invalid email';
                                   }
                                   return null;
                                 },
                               ),
-                              isEmailWrong
-                                  ? const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Text(
-                                        'Invalid email format. Try again with valid email',
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    )
-                                  : SizedBox(height: 16.h),
+                              if (isEmailWrong)
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'Invalid email format. Try again with valid email',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
+                                )
+                              else
+                                SizedBox(height: 16.h),
                               FormContainerWidget(
                                 onChanged: (value) {
                                   setState(() {
@@ -255,7 +302,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           },
                           builder: (context, state) {
                             return ButtonContainerWidget(
-                              color: AppColors.primaryButtonColor,
+                              color: Theme.of(context).primaryColor,
                               text: state is LoginLoadingState
                                   ? ''
                                   : S.of(context).login,
@@ -278,29 +325,52 @@ class _SigninScreenState extends State<SigninScreen> {
                           },
                         ),
                         SizedBox(height: 24.h),
-                  
                         Row(
                           children: [
-                            const Expanded(
-                              child: Divider(
-                                color: Colors.white,
-                                thickness: 1,
-                                endIndent: 10,
+                            Expanded(
+                              child: Container(
+                                height: 2,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.transparent,
+                                      Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.5),
+                                      Theme.of(context).primaryColor,
+                                    ],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                  ),
+                                ),
+                                margin: const EdgeInsets.only(right: 10),
                               ),
                             ),
                             Text(
                               S.of(context).orLoginWith,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Theme.of(context).primaryColor,
                               ),
                             ),
-                            const Expanded(
-                              child: Divider(
-                                color: Colors.white,
-                                thickness: 1,
-                                indent: 10,
+                            Expanded(
+                              child: Container(
+                                height: 2,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Theme.of(context).primaryColor,
+                                      Theme.of(context)
+                                          .primaryColor
+                                          .withOpacity(0.6),
+                                      Colors.transparent,
+                                    ],
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                  ),
+                                ),
+                                margin: const EdgeInsets.only(left: 10),
                               ),
                             ),
                           ],
@@ -321,25 +391,22 @@ class _SigninScreenState extends State<SigninScreen> {
                           iconPath: 'assets/icons/apple.png',
                         ),
                         SizedBox(height: 24.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Terms and conditions",
-                              style: textPrimaryStyle,
+                        GestureDetector(
+                          onTap: () => context.push('/signup'),
+                          child: Text(
+                            S.of(context).signUp,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
                             ),
-                            SizedBox(width: 2.w),
-                            GestureDetector(
-                              onTap: () => context.go('/signup'),
-                              child: Text(
-                                S.of(context).signUp,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primaryButtonColor,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Terms and conditions",
+                          style: textPrimaryStyle,
                         ),
                       ],
                     ),

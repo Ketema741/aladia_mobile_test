@@ -1,12 +1,16 @@
 import 'dart:io' show Platform;
 import 'package:aladia_flutter_test/core/constants/app_text_styles.dart';
 import 'package:aladia_flutter_test/core/theme/app_colors.dart';
+import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_event.dart';
 import 'package:aladia_flutter_test/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../authentication/presentation/widgets/widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_bloc.dart';
+import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_state.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -16,6 +20,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  ThemeMode _themeMode = ThemeMode.light;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
   late TextEditingController _controller;
@@ -29,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       locale = const Locale('it', '');
     }
 
-    S.load(locale); // Update the language
+    S.load(locale);
   }
 
   @override
@@ -50,13 +55,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (kIsWeb) {
       containerHeight = 600.0;
     } else if (Platform.isAndroid || Platform.isIOS) {
-      // Height for mobile platforms (Android/iOS)
       containerHeight = 510.0;
     } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
-      // Height for desktop platforms
       containerHeight = 700.0;
     } else {
-      // Default height for other platforms
       containerHeight = 600.0;
     }
     List<String> options = <String>[
@@ -66,10 +68,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     ScreenUtil.init(context, designSize: const Size(430, 932));
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: SingleChildScrollView(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 23),
+            padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 23),
             child: Column(
               children: [
                 Row(
@@ -80,7 +82,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         icon: const Icon(Icons.keyboard_arrow_down,
                             color: Color(0xff595959)),
                         value: _selectedOption,
-                        dropdownColor: Colors.white,
+                        dropdownColor:
+                            Theme.of(context).scaffoldBackgroundColor,
                         borderRadius: BorderRadius.circular(10),
                         hint: const Text(
                           'Choose language',
@@ -97,9 +100,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             child: Text(
                               value,
                               style: TextStyle(
-                                color: _selectedOption == value
-                                    ? AppColors.primaryColor
-                                    : Colors.black,
+                                color: Theme.of(context).primaryColor,
                                 fontWeight: _selectedOption == value
                                     ? FontWeight.bold
                                     : FontWeight.normal,
@@ -116,20 +117,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         },
                       ),
                     ),
-                    TextButton(
-                      onPressed: () {
-                        context.push("/home");
-                      },
-                      child: Text(
-                        S.of(context).skip,
-                        style: TextStyle(
-                          color: const Color(0xFF5F95DC),
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2,
-                          letterSpacing: 0.10,
-                        ),
+                    IconButton(
+                      icon: Icon(
+                        _themeMode == ThemeMode.light
+                            ? Icons.dark_mode
+                            : Icons.light_mode,
                       ),
+                      onPressed: () {
+                        BlocProvider.of<ThemeBloc>(context)
+                            .add(ToggleThemeEvent());
+                        setState(() {
+                          _themeMode = _themeMode == ThemeMode.light
+                              ? ThemeMode.dark
+                              : ThemeMode.light;
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -166,14 +168,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
-                // SizedBox(height: 16.h),
                 Column(
                   children: [
                     _currentPage < 3
                         ? ButtonContainerWidget(
                             isActive: true,
                             color: AppColors.primaryButtonColor,
-                            // text: 'Next',
                             text: S.of(context).next,
                             onTapListener: () {
                               _pageController.nextPage(
@@ -185,7 +185,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         : ButtonContainerWidget(
                             isActive: true,
                             color: AppColors.primaryButtonColor,
-                            // text: 'Get Started',
                             text: S.of(context).getStarted,
                             onTapListener: () {
                               context.push('/login');
@@ -219,7 +218,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: heading1Style,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 24.sp,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         SizedBox(height: 8.h),
@@ -228,7 +231,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             description,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: const Color(0xFF778293),
+              color: Theme.of(context).primaryColor.withOpacity(0.7),
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
               letterSpacing: 0.50,

@@ -7,7 +7,6 @@ class AppColors {
   static const whiteColor = Colors.white;
   static const blackColor = Colors.black;
   static const redColor = Colors.red;
-  static const blueColor = Colors.blue;
   static var lightGrayColor = Colors.grey[300];
 
 // *********************** BUTTON COLORS ******************************************************************
