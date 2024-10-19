@@ -1,0 +1,30 @@
+name: Bootstrap
+description: Bootstrap the project
+runs:
+  using: composite
+  steps:
+    # Set up Flutter
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 3.24.3
+
+    - name: 'Checkout Flutter 3.24.3'
+      shell: bash
+      run: |
+        cd $FLUTTER_ROOT;
+        git fetch --tags;
+        git checkout 3.24.3;
+        flutter --version;
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        flutter pub get
+        flutter pub run intl_utils:generate  
+        
+    # Build Flutter web app with specific main.dart
+    - name: Bootstrap widgetbook
+      working-directory: widgetbook
+      shell: bash
+      run: flutter build web --target=main.dart

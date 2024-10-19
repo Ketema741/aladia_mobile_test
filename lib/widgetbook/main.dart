@@ -1,7 +1,7 @@
 // lib/widgetbook.dart
 import 'package:aladia_flutter_test/core/theme/dartk_theme.dart';
 import 'package:aladia_flutter_test/core/theme/light_theme.dart';
-import 'package:aladia_flutter_test/widgetbook/widgetbook.directories.g.dart';
+import 'package:aladia_flutter_test/widgetbook/main.directories.g.dart';
 import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;

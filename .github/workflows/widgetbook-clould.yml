@@ -1,0 +1,27 @@
+name: Push Build to Widgetbook Cloud
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  push-build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: sandbox
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Bootstrap
+        uses: ././.github/actions/bootstrap
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Build
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_CLOUD_API_KEY }} 
