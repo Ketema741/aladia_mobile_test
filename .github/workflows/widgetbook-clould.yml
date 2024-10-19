@@ -34,7 +34,7 @@ jobs:
           flutter pub get
           flutter pub run intl_utils:generate
           dart run build_runner build -d
-          flutter build web --targetlib/widgetbook/main.dart
+          flutter build web --target lib/widgetbook/main.dart
 
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
