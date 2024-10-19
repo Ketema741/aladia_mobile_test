@@ -408,6 +408,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                     ],
+
                   ),
                 ),
                 if (state is RegisterLoadingState)

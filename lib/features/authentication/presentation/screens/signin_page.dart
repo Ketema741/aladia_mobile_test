@@ -82,6 +82,20 @@ class _SigninScreenState extends State<SigninScreen> {
                               width: 0.5,
                             ),
                             borderRadius: BorderRadius.circular(8.0),
+                            gradient: LinearGradient(
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.2),
+                                Colors.black.withOpacity(0.02),
+                              ],
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomCenter,
+                              stops: const [
+                                0.4,
+                                0.75,
+                                1,
+                              ],
+                            ),
                           ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -301,26 +315,30 @@ class _SigninScreenState extends State<SigninScreen> {
                             }
                           },
                           builder: (context, state) {
-                            return ButtonContainerWidget(
-                              color: Theme.of(context).primaryColor,
-                              text: state is LoginLoadingState
-                                  ? ''
-                                  : S.of(context).login,
-                              isActive: checkIsActive(),
-                              onTapListener: () {
-                                setState(() {
-                                  isEmailWrong = false;
-                                  isPasswordShort = false;
-                                  invalidCredentials = false;
-                                  noConnection = false;
-                                });
-                                BlocProvider.of<LoginBloc>(context).add(
-                                  LoginButtonPressedEvent(
-                                    email: _emailController.text,
-                                    password: _passwordController.text,
-                                  ),
-                                );
-                              },
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              child: ButtonContainerWidget(
+                                color: Theme.of(context).primaryColor,
+                                text: state is LoginLoadingState
+                                    ? ''
+                                    : S.of(context).enter,
+                                isActive: checkIsActive(),
+                                onTapListener: () {
+                                  setState(() {
+                                    isEmailWrong = false;
+                                    isPasswordShort = false;
+                                    invalidCredentials = false;
+                                    noConnection = false;
+                                  });
+                                  BlocProvider.of<LoginBloc>(context).add(
+                                    LoginButtonPressedEvent(
+                                      email: _emailController.text,
+                                      password: _passwordController.text,
+                                    ),
+                                  );
+                                },
+                              ),
                             );
                           },
                         ),
