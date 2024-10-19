@@ -17,8 +17,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Bootstrap
-        uses: ././.github/actions/bootstrap
+      - name: 'Checkout Flutter 3.24.3'
+        shell: bash
+        run: |
+          cd $FLUTTER_ROOT;
+          git fetch --tags;
+          git checkout 3.24.3;
+          flutter --version;
+          
+      - name: Install dependencies
+        shell: bash
+        run: |
+          flutter pub get
+          flutter pub run intl_utils:generate
 
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
