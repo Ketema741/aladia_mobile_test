@@ -27,12 +27,13 @@ jobs:
           git fetch --tags;
           git checkout 3.24.3;
           flutter --version;
-          
+
       - name: Install dependencies
         shell: bash
         run: |
           flutter pub get
           flutter pub run intl_utils:generate
+          dart run build_runner build -d
 
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
