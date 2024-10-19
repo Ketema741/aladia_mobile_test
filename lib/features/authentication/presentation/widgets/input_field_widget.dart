@@ -1,4 +1,3 @@
-import 'package:aladia_flutter_test/core/constants/app_text_styles.dart';
 import 'package:aladia_flutter_test/core/theme/app_colors.dart';
 import 'package:aladia_flutter_test/features/authentication/presentation/widgets/box_label_in.dart';
 import 'package:flutter/material.dart';

@@ -201,7 +201,6 @@ class _OtpFormState extends State<OtpForm> {
                   SizedBox(
                       width: 1.sw,
                       child: ButtonContainerWidget(
-                        color: AppColors.primaryButtonColor,
                         text: 'Verify',
                         isActive: _isButtonActive,
                         onTapListener: () {

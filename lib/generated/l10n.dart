@@ -210,6 +210,16 @@ class S {
     );
   }
 
+  /// `Enter`
+  String get enter {
+    return Intl.message(
+      'Enter',
+      name: 'enter',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Or`
   String get orLoginWith {
     return Intl.message(

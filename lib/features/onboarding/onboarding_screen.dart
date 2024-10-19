@@ -1,6 +1,4 @@
 import 'dart:io' show Platform;
-import 'package:aladia_flutter_test/core/constants/app_text_styles.dart';
-import 'package:aladia_flutter_test/core/theme/app_colors.dart';
 import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_event.dart';
 import 'package:aladia_flutter_test/generated/l10n.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +8,6 @@ import '../authentication/presentation/widgets/widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_bloc.dart';
-import 'package:aladia_flutter_test/features/authentication/presentation/bloc/theme_bloc/theme_state.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -53,13 +50,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     double containerHeight;
     if (kIsWeb) {
-      containerHeight = 600.0;
-    } else if (Platform.isAndroid || Platform.isIOS) {
-      containerHeight = 510.0;
-    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
       containerHeight = 700.0;
+    } else if (Platform.isAndroid || Platform.isIOS) {
+      containerHeight = 610.0;
+    } else if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {
+      containerHeight = 800.0;
     } else {
-      containerHeight = 600.0;
+      containerHeight = 700.0;
     }
     List<String> options = <String>[
       'English',
@@ -173,7 +170,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     _currentPage < 3
                         ? ButtonContainerWidget(
                             isActive: true,
-                            color: AppColors.primaryButtonColor,
                             text: S.of(context).next,
                             onTapListener: () {
                               _pageController.nextPage(
@@ -184,7 +180,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           )
                         : ButtonContainerWidget(
                             isActive: true,
-                            color: AppColors.primaryButtonColor,
                             text: S.of(context).getStarted,
                             onTapListener: () {
                               context.push('/login');
@@ -212,7 +207,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image.asset(imagePath),
-        SizedBox(height: 30.h),
+        SizedBox(height: 24.h),
         SizedBox(
           width: 380.w,
           child: Text(

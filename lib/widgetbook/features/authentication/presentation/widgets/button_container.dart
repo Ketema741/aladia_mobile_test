@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 class ButtonContainerWidget extends StatelessWidget {
   final String? text;
@@ -13,7 +14,8 @@ class ButtonContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      width: 300,
+      height: 50,
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).primaryColor.withOpacity(0.5),
@@ -42,4 +44,19 @@ class ButtonContainerWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+@widgetbook.UseCase(name: 'Inactive', type: ButtonContainerWidget)
+ButtonContainerWidget buildInactiveButtonUseCase(BuildContext context) {
+  return const ButtonContainerWidget(
+    text: 'In Active Enter',
+  );
+}
+
+@widgetbook.UseCase(name: 'Active', type: ButtonContainerWidget)
+ButtonContainerWidget buildActiveButtonUseCase(BuildContext context) {
+  return const ButtonContainerWidget(
+    text: 'Active Enter',
+    isActive: true,
+  );
 }
