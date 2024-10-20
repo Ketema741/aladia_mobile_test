@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Frontend Api",
+      "description": "",
+      "version": "1.0.0"
+    },
+    "tags": [],
+    "paths": {
+      "/auth/login": {
+        "post": {
+          "summary": "Login user",
+          "deprecated": false,
+          "description": "Authenticates user login and issues JWT in response body as well as in cookies.",
+          "tags": [],
+          "parameters": [],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "description": "Email Address"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "Password"
+                    }
+                  },
+                  "required": ["email", "password"]
+                },
+                "example": {
+                  "email": "zele@aladia.io",
+                  "password": "Pass@123"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "accessToken": {
+                        "type": "string",
+                        "description": "Access tokens are issued after a successful authentication. to access rest of the APIs"
+                      }
+                    },
+                    "required": ["accessToken"],
+                    "examples": {
+                      "1": {
+                        "summary": "Success",
+                        "value": {
+                          "accessToken": "string"
+                        }
+                      },
+                      "2": {
+                        "summary": "Parameter Error",
+                        "value": {
+                          "statusCode": 422,
+                          "timestamp": "2024-10-12T09:27:35.072Z",
+                          "path": "/v2/auth/register",
+                          "message": "Validation Exception",
+                          "errors": [
+                            {
+                              "field": "email",
+                              "rules": ["isEmail"],
+                              "messages": ["email must be an email"]
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "statusCode": { "type": "integer" },
+                      "timestamp": { "type": "string" },
+                      "path": { "type": "string" },
+                      "message": { "type": "string" },
+                      "errors": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    },
+                    "required": ["statusCode", "timestamp", "path", "message", "errors"],
+                    "examples": {
+                      "1": {
+                        "summary": "Exception",
+                        "value": {
+                          "statusCode": 400,
+                          "timestamp": "2024-10-12T09:38:32.306Z",
+                          "path": "/v2/auth/login",
+                          "message": "User verification pending",
+                          "errors": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {},
+                    "examples": {
+                      "1": {
+                        "summary": "Unauthorized",
+                        "value": {
+                          "statusCode": 401,
+                          "timestamp": "2024-10-12T09:32:15.162Z",
+                          "path": "/v2/auth/login",
+                          "message": "Invalid credentials",
+                          "errors": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "title": "",
+                    "type": "object",
+                    "properties": {
+                      "statusCode": { "type": "number" },
+                      "timestamp": { "type": "string" },
+                      "path": { "type": "string" },
+                      "message": { "type": "string" },
+                      "errors": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    },
+                    "examples": {
+                      "1": {
+                        "summary": "Forbidden",
+                        "value": {
+                          "statusCode": 403,
+                          "timestamp": "2024-10-12T09:41:45.248Z",
+                          "path": "/v2/auth/login",
+                          "message": "User blocked",
+                          "errors": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "title": "",
+                    "type": "object",
+                    "properties": {
+                      "statusCode": { "type": "number" },
+                      "timestamp": { "type": "string" },
+                      "path": { "type": "string" },
+                      "message": { "type": "string" },
+                      "errors": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    },
+                    "required": ["statusCode", "timestamp", "path", "message", "errors"],
+                    "examples": {
+                      "1": {
+                        "summary": "Record Not Found",
+                        "value": {
+                          "statusCode": 404,
+                          "timestamp": "2024-10-12T09:40:55.435Z",
+                          "path": "/v2/auth/login",
+                          "message": "User not found",
+                          "errors": []
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "status": { "type": "integer", "description": "Response status Code" },
+                      "timeStamp": { "type": "string", "description": "timeStamp of response" },
+                      "path": { "type": "string", "description": "request path" },
+                      "message": { "type": "string", "description": "response error message" },
+                      "error": {
+                        "type": "array",
+                        "items": { "type": "string", "description": "array of errors" }
+                      }
+                    },
+                    "required": ["status", "timeStamp", "path", "message", "error"]
+                  }
+                }
+              }
+            }
+          },
+          "security": []
+        }
+      }
+    }
+}
