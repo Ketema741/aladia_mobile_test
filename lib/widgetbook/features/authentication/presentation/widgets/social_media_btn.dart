@@ -20,7 +20,6 @@ class _SocialMediaBtnState extends State<SocialMediaBtn> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 400,
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).primaryColor.withOpacity(0.3),
