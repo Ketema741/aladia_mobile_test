@@ -16,6 +16,7 @@ class SocialMediaBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 52,
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).primaryColor.withOpacity(0.3),

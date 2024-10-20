@@ -33,7 +33,7 @@ class WidgetbookApp extends StatelessWidget {
           ],
         ),
         TextScaleAddon(
-          scales: [1.0, 2.0],
+          scales: [0.6, 0.8, 1.0, 2.0],
         ),
         LocalizationAddon(
           locales: [

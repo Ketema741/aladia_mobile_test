@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-
 class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
 
@@ -67,11 +66,12 @@ class _SigninScreenState extends State<SigninScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 24.h),
+                      SizedBox(height: 24.h), // mobile@aladia.io Pass@123
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Theme.of(context).primaryColor.withOpacity(0.5),
+                            color:
+                                Theme.of(context).primaryColor.withOpacity(0.5),
                             width: 0.5,
                           ),
                           borderRadius: BorderRadius.circular(8.0),
@@ -87,13 +87,16 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                         ),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image.asset(
-                              'assets/images/aladia_logo.png',
-                              height: 150,
+                            const Image(
+                              image: AssetImage(
+                                'assets/images/aladia_logo.png',
+                              ),
+                              // height: 150,
                               width: 150,
+                              fit: BoxFit.cover,
                             ),
                             Flexible(
                               child: Padding(
@@ -112,7 +115,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                     ),
                                     const SizedBox(height: 5),
                                     Text(
-                                      'Create or access your account from here',
+                                      "${S.of(context).createAccountOrSignup}",
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Theme.of(context)
@@ -133,7 +136,8 @@ class _SigninScreenState extends State<SigninScreen> {
                       Text(
                         S.of(context).enterYourEmail,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor.withOpacity(0.75),
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.75),
                           fontSize: 16.sp,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.15,
@@ -151,7 +155,8 @@ class _SigninScreenState extends State<SigninScreen> {
                               isPasswordField: false,
                               onChanged: (value) {
                                 setState(() {
-                                  isEmailFilled = _emailController.text.isNotEmpty;
+                                  isEmailFilled =
+                                      _emailController.text.isNotEmpty;
                                 });
                               },
                               validator: (value) {
@@ -162,6 +167,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                 }
                                 return null;
                               },
+                              prefixIcon: const Icon(Icons.email),
                             ),
                             if (isEmailWrong)
                               const Padding(
@@ -238,7 +244,13 @@ class _SigninScreenState extends State<SigninScreen> {
                               });
                               return;
                             }
-                            if (state.error.contains('Invalid email or')) {
+                            if (state.error.contains('Validation Exception')) {
+                              setState(() {
+                                isEmailWrong = true;
+                              });
+                              return;
+                            }
+                            if (state.error.contains('Invalid credential')) {
                               setState(() {
                                 invalidCredentials = true;
                               });
@@ -250,7 +262,8 @@ class _SigninScreenState extends State<SigninScreen> {
                               });
                               return;
                             }
-                            if (state.error.contains('No internet connection')) {
+                            if (state.error
+                                .contains('No internet connection')) {
                               setState(() {
                                 noConnection = true;
                               });
@@ -262,30 +275,26 @@ class _SigninScreenState extends State<SigninScreen> {
                           }
                         },
                         builder: (context, state) {
-                          return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
-                              child: ButtonContainerWidget(
-                                text: state is LoginLoadingState
-                                    ? ''
-                                    : S.of(context).enter,
-                                isActive: checkIsActive(),
-                                onTapListener: () {
-                                  setState(() {
-                                    isEmailWrong = false;
-                                    isPasswordShort = false;
-                                    invalidCredentials = false;
-                                    noConnection = false;
-                                  });
-                                  BlocProvider.of<LoginBloc>(context).add(
-                                    LoginButtonPressedEvent(
-                                      email: _emailController.text,
-                                      password: _passwordController.text,
-                                    ),
-                                  );
-                                },
-                              ),
-                            );
+                          return ButtonContainerWidget(
+                            text: state is LoginLoadingState
+                                ? ''
+                                : S.of(context).enter,
+                            isActive: checkIsActive(),
+                            onTapListener: () {
+                              setState(() {
+                                isEmailWrong = false;
+                                isPasswordShort = false;
+                                invalidCredentials = false;
+                                noConnection = false;
+                              });
+                              BlocProvider.of<LoginBloc>(context).add(
+                                LoginButtonPressedEvent(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                ),
+                              );
+                            },
+                          );
                         },
                       ),
                       SizedBox(height: 24.h),

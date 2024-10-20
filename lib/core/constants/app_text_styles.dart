@@ -81,7 +81,7 @@ var textSecondaryStyle = GoogleFonts.poppins(
 // Body Text
 var bodyLargeStyle = GoogleFonts.poppins(
   color: AppColors.primaryTextColor,
-  fontSize: 16.sp,
+  fontSize: 18.sp,
   fontWeight: FontWeight.w400,
   letterSpacing: 0.50,
 );

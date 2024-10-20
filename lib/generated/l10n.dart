@@ -170,6 +170,16 @@ class S {
     );
   }
 
+  /// `Create or access your account from here`
+  String get createAccountOrSignup {
+    return Intl.message(
+      'Create or access your account from here',
+      name: 'createAccountOrSignup',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email`
   String get email {
     return Intl.message(

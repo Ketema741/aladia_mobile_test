@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Cambia password"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Conferma Password"),
+        "createAccountOrSignup": MessageLookupByLibrary.simpleMessage(
+            "Crea o accedi al tuo account da qui"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Non hai un account?"),
         "email": MessageLookupByLibrary.simpleMessage("E-mail"),

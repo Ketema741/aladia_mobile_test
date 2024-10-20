@@ -18,7 +18,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<String> signin(String email, String password) async {
     final url = Uri.parse('$kBaseUrl/auth/login');
 
-     // Request body
+    // Request body
     final body = jsonEncode({
       'email': email,
       'password': password,
@@ -26,14 +26,16 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
     final response = await client.post(
       url,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: body,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
     );
-    if (response.statusCode == 200 || jsonDecode(response.body)["accessToken"].toString().isNotEmpty) {
+    if (response.statusCode == 200 ||response.statusCode == 201) {
+      print(response.body);
       return jsonDecode(response.body)["accessToken"].toString();
     } else {
+      print(jsonDecode(response.body)['message']);
       throw ServerException(message: jsonDecode(response.body)['message']);
     }
   }

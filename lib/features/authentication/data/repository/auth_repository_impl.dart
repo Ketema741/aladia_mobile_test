@@ -1,3 +1,4 @@
+import 'package:aladia_flutter_test/core/error/exception.dart';
 import 'package:aladia_flutter_test/core/error/failures.dart';
 import 'package:aladia_flutter_test/core/network/network_info.dart';
 import 'package:aladia_flutter_test/core/utils/shard_preference.dart';
@@ -23,10 +24,10 @@ class AuthRepositoryImpl implements AuthRepository {
         ShardPrefHelper.setToken(result);
 
         return Right(result);
-      } on ServerFailure catch (e) {
+      } on ServerException catch (e) {
         return Left(ServerFailure(message: e.message));
       } catch (e) {
-        return Left(ServerFailure(message: '$e'));
+        return const Left(ServerFailure(message: 'Unexpected error occurred'));
       }
     } else {
       return const Left(ServerFailure(message: 'No internet connection'));

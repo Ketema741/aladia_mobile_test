@@ -18,7 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final result = await _loginUser
           .call(LoginParams(email: event.email, password: event.password));
 
-      result.fold((error) => emit(LoginFailureState(error: error.toString())),
+      result.fold((error) => emit(LoginFailureState(error: error.message)),
           (token) {
         emit(LoginSuccessState(token: token));
       });

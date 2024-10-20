@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+  const SignUpScreen({super.key, this.email});
+    final String? email;
+
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -52,11 +54,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     _firstNameController = TextEditingController();
     _lastNameController = TextEditingController();
-    _emailController = TextEditingController();
+    _emailController = TextEditingController(text: widget.email ?? '');
     _passwordController = TextEditingController();
     _confirmPasswordController = TextEditingController();
     _phoneNumberController = TextEditingController();
     _signUpFormKey = GlobalKey<FormState>();
+    isEmailFilled = _emailController.text.isNotEmpty;
+
     super.initState();
   }
 
@@ -86,9 +90,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        SizedBox(height: 12.h),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.arrow_back_ios,
+                              size: 20,
+                              ),
+                              onPressed: () {
+                                context.go('/login');
+                              },
+                            ),
+                            const SizedBox(width: 10),
+                            Text(
+                              S.of(context).signUp,
+                              style: bodyLargeStyle,
+                            ),
+                          ],
+                        ),
                         SizedBox(height: 28.h),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
@@ -113,8 +137,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               child: Image.asset(
                                 'assets/images/aladia_logo.png',
-                                height: 150,
-                                width: 150,
+                                height: 100,
+                                width: 100,
                               ),
                             ),
                             Flexible(
@@ -124,7 +148,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "${S.of(context).welcome},",
+                                      "Nice to meet you,",
                                       style: TextStyle(
                                         color: Theme.of(context).primaryColor,
                                         fontSize: 20,
@@ -134,7 +158,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     ),
                                     const SizedBox(height: 5),
                                     Text(
-                                      'Create or access your account from here',
+                                      'Upload a profile picture and complete your presentation',
                                       style: TextStyle(
                                         fontSize: 16,
                                         color: Theme.of(context)
@@ -181,6 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   return null;
                                 },
                               ),
+                              SizedBox(height: 16.h),
                               CustomTextFormField(
                                 controller: _lastNameController,
                                 hintText: S.of(context).lastName,
@@ -217,6 +242,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   }
                                   return null;
                                 },
+                                readOnly: widget.email != null,
                               ),
                               if (isEmailWrong)
                                 const Padding(
@@ -287,24 +313,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 },
                               ),
                               SizedBox(height: 10.h),
-                              CustomTextFormField(
-                                controller: _phoneNumberController,
-                                hintText: S.of(context).phoneNumber,
-                                keyboardType: TextInputType.phone,
-                                prefixIcon: const Icon(Icons.phone),
-                                onChanged: (value) {
-                                  setState(() {
-                                    isPhoneNumberFilled =
-                                        _phoneNumberController.text.isNotEmpty;
-                                  });
-                                },
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Phone Number is required';
-                                  }
-                                  return null;
-                                },
-                              ),
                               if (noConnection)
                                 const Text(
                                   'No Internet Connection',
@@ -392,31 +400,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   );
                                 },
                               ),
-                              SizedBox(height: 10.h),
-                              Text(
-                                S.of(context).orSignUpWith,
-                                style: textPrimaryStyle,
-                              ),
+                              
                               SizedBox(height: 20.h),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    S.of(context).alreadyHaveAccount,
-                                    style: textPrimaryStyle,
+                              GestureDetector(
+                                onTap: () => context.push('/signup'),
+                                child: Text(
+                                  S.of(context).signUp,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
                                   ),
-                                  const SizedBox(width: 5),
-                                  GestureDetector(
-                                    onTap: () => context.go('/login'),
-                                    child: Text(
-                                      S.of(context).login,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                "Terms and conditions",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
                             ],
                           ),

@@ -1,4 +1,5 @@
 import 'package:aladia_flutter_test/core/constants/route_constants.dart';
+import 'package:aladia_flutter_test/features/home/home.dart';
 import 'package:aladia_flutter_test/features/onboarding/onboarding_screen.dart';
 import 'package:aladia_flutter_test/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,13 @@ final GoRouter router = GoRouter(
       name: RouteConstants.spalashRouteName,
       builder: (BuildContext context, GoRouterState state) {
         return const SplashScreen();
+      },
+    ),
+   GoRoute(
+      path: '/home',
+      name: RouteConstants.homeScreenRouteName,
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomeScreen();
       },
     ),
    GoRoute(
